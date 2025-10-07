@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
@@ -15,7 +16,7 @@ public class TextBoxTests {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = false;
         Configuration.timeout = 5000; // default 4000
     }
 
@@ -37,31 +38,52 @@ public class TextBoxTests {
     @Test
     void fillSecondFormTest() {
         open("/automation-practice-form");
+
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Ivanov");
 
         $("#userEmail").setValue("alex@egorov.com");
-        $x("//label[text() = 'Male']").click();
+        $(byText("Male")).click();
         $("#userNumber").setValue("9993334455");
 
         $("#dateOfBirthInput").click();
-        $$x("//div[@role = 'option']").last().click();
+        $$("[role = option]").last().click();
 
         $("#subjectsInput").setValue("Maths");
-        $x("//div[contains(@id, 'option')]").click();
+        $("#react-select-2-option-0").click();
 
-        $x("//label[text() = 'Sports']").click();
+        $(byText("Sports")).click();
 
         $("#uploadPicture").uploadFromClasspath("AtomicHeart_sample.jpg");
 
         $("#currentAddress").setValue("Some street 1");
 
-        $x("//div[text() = 'Select State']").scrollIntoView(true).click();
-        $$x("//div[contains(@id, 'option')]").first().click();
+        $(byText("Select State")).scrollIntoView(true).click();
+        $(byText("NCR")).click();
 
-        $x("//div[text() = 'Select City']").click();
-        $$x("//div[contains(@id, 'option')]").first().click();
+        $(byText("Select City")).click();
+        $(byText("Delhi")).click();
 
         $("#submit").click();
+
+        var dataTable = $("tbody");
+        dataTable.shouldHave(text("Alex Ivanov"));
+        dataTable.shouldHave(text("alex@egorov.com"));
+        dataTable.shouldHave(text("Male"));
+        dataTable.shouldHave(text("9993334455"));
+        dataTable.shouldHave(text("08 November,2025"));
+        dataTable.shouldHave(text("Maths"));
+        dataTable.shouldHave(text("Sports"));
+        dataTable.shouldHave(text("AtomicHeart_sample.jpg"));
+        dataTable.shouldHave(text("Some street 1"));
+        dataTable.shouldHave(text("NCR Delhi"));
+
+
+
+
+
+
+
+
     }
 }
