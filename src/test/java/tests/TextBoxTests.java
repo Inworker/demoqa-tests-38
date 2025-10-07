@@ -77,13 +77,5 @@ public class TextBoxTests {
         dataTable.shouldHave(text("AtomicHeart_sample.jpg"));
         dataTable.shouldHave(text("Some street 1"));
         dataTable.shouldHave(text("NCR Delhi"));
-
-
-
-
-
-
-
-
     }
 }
