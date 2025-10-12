@@ -43,26 +43,24 @@ public class TextBoxTests {
         $("#lastName").setValue("Ivanov");
 
         $("#userEmail").setValue("alex@egorov.com");
-        $(byText("Male")).click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("9993334455");
 
         $("#dateOfBirthInput").click();
-        $$("[role = option]").last().click();
+        $(".react-datepicker__year-select").selectOption("2025");
+        $(".react-datepicker__month-select").click();
+        $(".react-datepicker__month-select").selectOption("May");
+        $(".react-datepicker__day--007").click();
 
-        $("#subjectsInput").setValue("Maths");
-        $("#react-select-2-option-0").click();
-
-        $(byText("Sports")).click();
+        $("#subjectsInput").setValue("Maths").pressEnter();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
 
         $("#uploadPicture").uploadFromClasspath("AtomicHeart_sample.jpg");
-
         $("#currentAddress").setValue("Some street 1");
 
-        $(byText("Select State")).scrollIntoView(true).click();
-        $(byText("NCR")).click();
-
-        $(byText("Select City")).click();
-        $(byText("Delhi")).click();
+        $("#stateCity-label").scrollIntoView(true).click();
+        $("#react-select-3-input").setValue("NCR").pressEnter();
+        $("#react-select-4-input").setValue("Delhi").pressEnter();
 
         $("#submit").click();
 
@@ -71,7 +69,7 @@ public class TextBoxTests {
         dataTable.shouldHave(text("alex@egorov.com"));
         dataTable.shouldHave(text("Male"));
         dataTable.shouldHave(text("9993334455"));
-        dataTable.shouldHave(text("08 November,2025"));
+        dataTable.shouldHave(text("07 May,2025"));
         dataTable.shouldHave(text("Maths"));
         dataTable.shouldHave(text("Sports"));
         dataTable.shouldHave(text("AtomicHeart_sample.jpg"));
