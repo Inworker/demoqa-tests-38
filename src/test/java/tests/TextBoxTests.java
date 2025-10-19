@@ -34,7 +34,7 @@ public class TextBoxTests extends TestBase{
             .setEmail("alex@egorov.com")
             .setGender("Male")
             .setPhone("9993334455")
-            .setBirthday("2025", "May")
+            .setDate("2025", "May")
             .setSubject("Maths")
             .setHobbby("Sports")
             .uploadPicture("AtomicHeart_sample.jpg")

@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -13,10 +14,7 @@ public class TextBoxPage {
      emailLocator = $("#userEmail"),
      genderLocator = $("#genterWrapper"),
      phoneLocator = $("#userNumber"),
-     dateOfBirthInput = $("#dateOfBirthInput"),
-     yearLocator = $(".react-datepicker__year-select"),
-     monthLocator = $(".react-datepicker__month-select"),
-     dayLocator = $(".react-datepicker__day--007"),
+
      subjectLocator = $("#subjectsInput"),
      hobbyLocator = $("#hobbiesWrapper"),
      pathPictureLocator = $("#uploadPicture"),
@@ -25,6 +23,7 @@ public class TextBoxPage {
      stateLocator = $("#react-select-3-input"),
      cityLocator = $("#react-select-4-input"),
      submitLocator = $("#submit");
+    CalendarComponent calendarComponent = new CalendarComponent();
 
 
 
@@ -47,6 +46,11 @@ public class TextBoxPage {
         emailLocator.sendKeys(mail);
         return this;
 
+    }
+
+    public TextBoxPage setDate(String year, String month) {
+        calendarComponent.setBirthday( year,  month);
+        return this;
     }
 
     public TextBoxPage  setGender(String gender) {
@@ -97,17 +101,6 @@ public class TextBoxPage {
         cityLocator.setValue(city).pressEnter();
         return this;
 
-    }
-
-    public TextBoxPage setBirthday(String year, String month) {
-        dateOfBirthInput.click();
-        yearLocator.selectOption(year);
-
-        monthLocator.click();
-        monthLocator.selectOption(month);
-
-        dayLocator.click();
-        return this;
     }
 
     public TextBoxPage  submit() {
