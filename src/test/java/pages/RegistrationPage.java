@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.FinalTableComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -9,6 +10,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+    CalendarComponent calendarComponent = new CalendarComponent();
+    FinalTableComponent finalTableComponent = new FinalTableComponent();
+
     private SelenideElement firstNameLocator = $("#firstName"),
      lastNameLocator = $("#lastName"),
      emailLocator = $("#userEmail"),
@@ -23,7 +27,6 @@ public class RegistrationPage {
      stateLocator = $("#react-select-3-input"),
      cityLocator = $("#react-select-4-input"),
      submitLocator = $("#submit");
-    CalendarComponent calendarComponent = new CalendarComponent();
 
 
 
