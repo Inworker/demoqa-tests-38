@@ -48,8 +48,8 @@ public class RegistrationPage {
 
     }
 
-    public RegistrationPage setDate(String year, String month) {
-        calendarComponent.setBirthday( year,  month);
+    public RegistrationPage setDate(String year, String month, String day) {
+        calendarComponent.setBirthday( year,  month, day);
         return this;
     }
 

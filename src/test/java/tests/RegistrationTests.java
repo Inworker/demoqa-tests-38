@@ -34,7 +34,7 @@ public class RegistrationTests extends TestBase{
             .setEmail("alex@egorov.com")
             .setGender("Male")
             .setPhone("9993334455")
-            .setDate("2025", "May")
+            .setDate("2025", "May", "07")
             .setSubject("Maths")
             .setHobbby("Sports")
             .uploadPicture("AtomicHeart_sample.jpg")
