@@ -2,14 +2,14 @@ package tests;
 
 
 import org.junit.jupiter.api.Test;
-import pages.TextBoxPage;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TextBoxTests extends TestBase{
+public class RegistrationTests extends TestBase{
 
-    TextBoxPage textBoxPage = new TextBoxPage();
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fillFormTest() {
@@ -29,7 +29,7 @@ public class TextBoxTests extends TestBase{
     @Test
     void fillSecondFormTest() {
 
-        textBoxPage.openPage("/automation-practice-form")
+        registrationPage.openPage("/automation-practice-form")
             .setFullName("Alex", "Ivanov")
             .setEmail("alex@egorov.com")
             .setGender("Male")
