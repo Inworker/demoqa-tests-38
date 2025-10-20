@@ -1,12 +1,16 @@
 package tests;
+
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
 import pages.components.FinalTableComponent;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static utils.RandomUtils.getRandomEmail;
+import static utils.RandomUtils.getRandomString;
 
-public class TextBoxTests extends TestBase{
+public class TextBoxWithRandomUtilsTests extends TestBase{
 
     TextBoxPage textBoxPage = new TextBoxPage();
     FinalTableComponent finalTableComponent = new FinalTableComponent();
@@ -28,17 +32,21 @@ public class TextBoxTests extends TestBase{
 
     @Test
     void fillSecondFormTest() {
+        String firstName = getRandomString(10); // Emory
+        String lastName = getRandomString(10); // Barton
+        String email = getRandomEmail(); // Barton
+        String address = getRandomString(10);
 
         textBoxPage.openPage("/automation-practice-form")
-            .setFullName("Alex", "Ivanov")
-            .setEmail("alex@egorov.com")
+            .setFullName(firstName, lastName)
+            .setEmail(email)
             .setGender("Male")
             .setPhone("9993334455")
             .setDate("2025", "May", "07")
             .setSubject("Maths")
             .setHobbby("Sports")
             .uploadPicture("AtomicHeart_sample.jpg")
-            .setAddress("Some street 1")
+            .setAddress(address)
             .setStateAndCity("NCR", "Delhi")
             .submit()
             .checkData();
