@@ -1,15 +1,15 @@
 package tests;
-
-
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
+import pages.TextBoxPage;
+import pages.components.FinalTableComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationTests extends TestBase{
+public class TextBoxTests extends TestBase{
 
-    RegistrationPage registrationPage = new RegistrationPage();
+    TextBoxPage textBoxPage = new TextBoxPage();
+    FinalTableComponent finalTableComponent = new FinalTableComponent();
 
     @Test
     void fillFormTest() {
@@ -29,7 +29,7 @@ public class RegistrationTests extends TestBase{
     @Test
     void fillSecondFormTest() {
 
-        registrationPage.openPage("/automation-practice-form")
+        textBoxPage.openPage("/automation-practice-form")
             .setFullName("Alex", "Ivanov")
             .setEmail("alex@egorov.com")
             .setGender("Male")
@@ -42,5 +42,32 @@ public class RegistrationTests extends TestBase{
             .setStateAndCity("NCR", "Delhi")
             .submit()
             .checkData();
+    }
+
+    @Test
+    void fillRequiredFields() {
+
+        textBoxPage.openPage("/automation-practice-form")
+                .setFullName("Alex", "Ivanov")
+                .setGender("Male")
+                .setPhone("9993334455")
+                .setDate("2025", "May", "07")
+                .setHobbby("Sports")
+                .submit()
+                .checkRequairedFields();
+    }
+    @Test
+    void fillNonRequiredFields() {
+
+        textBoxPage.openPage("/automation-practice-form")
+                .setEmail("alex@egorov.com")
+                .setDate("2025", "May", "07")
+                .setSubject("Maths")
+                .setHobbby("Sports")
+                .uploadPicture("AtomicHeart_sample.jpg")
+                .setAddress("Some street 1")
+                .setStateAndCity("NCR", "Delhi")
+                .submit();
+        finalTableComponent.checkNotVisibleTable();
     }
 }

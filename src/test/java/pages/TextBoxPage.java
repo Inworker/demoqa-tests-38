@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationPage {
+public class TextBoxPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     FinalTableComponent finalTableComponent = new FinalTableComponent();
 
@@ -31,88 +31,99 @@ public class RegistrationPage {
 
 
 
-    public RegistrationPage openPage(String url) {
+
+    public TextBoxPage openPage(String url) {
 
         open(url);
         return this;
     }
 
-    public RegistrationPage setFullName(String fullName, String lastName)
+    public TextBoxPage setFullName(String fullName, String lastName)
     {
         firstNameLocator.sendKeys(fullName);
         lastNameLocator.sendKeys(lastName);
         return this;
     }
 
-    public RegistrationPage setEmail(String mail) {
+    public TextBoxPage setEmail(String mail) {
 
         emailLocator.sendKeys(mail);
         return this;
 
     }
 
-    public RegistrationPage setDate(String year, String month, String day) {
+    public void checkRequairedFields()
+    {
+        finalTableComponent.checkTitle()
+                .checkTableData("Student Name", "Alex Ivanov")
+                .checkTableData("Mobile", "9993334455")
+                .checkTableData("Date of Birth","07 May,2025");
+    }
+
+    public TextBoxPage setDate(String year, String month, String day) {
         calendarComponent.setBirthday( year,  month, day);
         return this;
     }
 
-    public RegistrationPage setGender(String gender) {
+    public TextBoxPage setGender(String gender) {
 
         genderLocator.$(byText(gender)).click();
         return this;
 
     }
 
-    public RegistrationPage setPhone(String phone) {
+    public TextBoxPage setPhone(String phone) {
 
         phoneLocator.sendKeys(phone);
         return this;
     }
 
-    public RegistrationPage setSubject(String subject) {
+    public TextBoxPage setSubject(String subject) {
 
         subjectLocator.setValue(subject).pressEnter();
         return this;
 
     }
 
-    public RegistrationPage setHobbby(String hobby) {
+    public TextBoxPage setHobbby(String hobby) {
 
         hobbyLocator.$(byText(hobby)).click();
         return this;
 
     }
 
-    public RegistrationPage uploadPicture(String pathPicture) {
+    public TextBoxPage uploadPicture(String pathPicture) {
 
         pathPictureLocator.uploadFromClasspath(pathPicture);
         return this;
 
     }
 
-    public RegistrationPage setAddress(String address) {
+    public TextBoxPage setAddress(String address) {
 
         addressLocator.setValue(address);
         return this;
 
     }
 
-    public RegistrationPage setStateAndCity(String state, String city) {
+    public TextBoxPage setStateAndCity(String state, String city) {
 
-        labelStateLocator.scrollIntoView(true).click();;
+        labelStateLocator.scrollIntoView(true).click();
         stateLocator.setValue(state).pressEnter();
         cityLocator.setValue(city).pressEnter();
         return this;
 
     }
 
-    public RegistrationPage submit() {
+    public TextBoxPage submit() {
 
-        submitLocator.click();
+        submitLocator.scrollTo();
+        submitLocator.scrollTo().click();
+
         return this;
 
     }
-    public RegistrationPage checkData(){
+    public void checkData(){
         var dataTable = $("tbody");
         dataTable.shouldHave(text("Alex Ivanov"));
         dataTable.shouldHave(text("alex@egorov.com"));
@@ -124,8 +135,6 @@ public class RegistrationPage {
         dataTable.shouldHave(text("AtomicHeart_sample.jpg"));
         dataTable.shouldHave(text("Some street 1"));
         dataTable.shouldHave(text("NCR Delhi"));
-        return this;
-
     }
 }
 
