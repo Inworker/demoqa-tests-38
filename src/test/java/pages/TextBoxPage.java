@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.FinalTableComponent;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
@@ -52,14 +51,6 @@ public class TextBoxPage {
 
     }
 
-    public void checkRequairedFields()
-    {
-        finalTableComponent.checkTitle()
-                .checkTableData("Student Name", "Alex Ivanov")
-                .checkTableData("Mobile", "9993334455")
-                .checkTableData("Date of Birth","07 May,2025");
-    }
-
     public TextBoxPage setDate(String year, String month, String day) {
         calendarComponent.setBirthday( year,  month, day);
         return this;
@@ -85,7 +76,7 @@ public class TextBoxPage {
 
     }
 
-    public TextBoxPage setHobbby(String hobby) {
+    public TextBoxPage setHobby(String hobby) {
 
         hobbyLocator.$(byText(hobby)).click();
         return this;
@@ -115,26 +106,10 @@ public class TextBoxPage {
 
     }
 
-    public TextBoxPage submit() {
+    public void submit() {
 
         submitLocator.scrollTo();
         submitLocator.scrollTo().click();
-
-        return this;
-
-    }
-    public void checkData(){
-        var dataTable = $("tbody");
-        dataTable.shouldHave(text("Alex Ivanov"));
-        dataTable.shouldHave(text("alex@egorov.com"));
-        dataTable.shouldHave(text("Male"));
-        dataTable.shouldHave(text("9993334455"));
-        dataTable.shouldHave(text("07 May,2025"));
-        dataTable.shouldHave(text("Maths"));
-        dataTable.shouldHave(text("Sports"));
-        dataTable.shouldHave(text("AtomicHeart_sample.jpg"));
-        dataTable.shouldHave(text("Some street 1"));
-        dataTable.shouldHave(text("NCR Delhi"));
     }
 }
 
