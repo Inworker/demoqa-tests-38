@@ -44,12 +44,22 @@ public class TextBoxWithRandomUtilsTests extends TestBase{
             .setPhone("9993334455")
             .setDate("2025", "May", "07")
             .setSubject("Maths")
-            .setHobbby("Sports")
+            .setHobby("Sports")
             .uploadPicture("AtomicHeart_sample.jpg")
             .setAddress(address)
             .setStateAndCity("NCR", "Delhi")
-            .submit()
-            .checkData();
+            .submit();
+        finalTableComponent.checkTableData("Student Name", "Alex Ivanov")
+                .checkTableData("Student Name", "Alex Ivanov")
+                .checkTableData("Student Email","alex@egorov.com")
+                .checkTableData("Gender", "Male")
+                .checkTableData("Mobile", "9993334455")
+                .checkTableData("Date of Birth","07 May,2025")
+                .checkTableData("Subjects", "Maths")
+                .checkTableData("Hobbies", "Sports")
+                .checkTableData("Picture","AtomicHeart_sample.jpg")
+                .checkTableData("Address", "Some street 1")
+                .checkTableData("State and City", "NCR Delhi");
     }
 
     @Test
@@ -60,9 +70,12 @@ public class TextBoxWithRandomUtilsTests extends TestBase{
                 .setGender("Male")
                 .setPhone("9993334455")
                 .setDate("2025", "May", "07")
-                .setHobbby("Sports")
-                .submit()
-                .checkRequairedFields();
+                .setHobby("Sports")
+                .submit();
+        finalTableComponent.checkTitle()
+                .checkTableData("Student Name", "Alex Ivanov")
+                .checkTableData("Mobile", "9993334455")
+                .checkTableData("Date of Birth","07 May,2025");
     }
     @Test
     void fillNonRequiredFields() {
@@ -71,7 +84,7 @@ public class TextBoxWithRandomUtilsTests extends TestBase{
                 .setEmail("alex@egorov.com")
                 .setDate("2025", "May", "07")
                 .setSubject("Maths")
-                .setHobbby("Sports")
+                .setHobby("Sports")
                 .uploadPicture("AtomicHeart_sample.jpg")
                 .setAddress("Some street 1")
                 .setStateAndCity("NCR", "Delhi")
