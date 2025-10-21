@@ -27,11 +27,13 @@ public class TextBoxPage {
      cityLocator = $("#react-select-4-input"),
      submitLocator = $("#submit");
 
+    private String url = "/automation-practice-form";
 
 
 
 
-    public TextBoxPage openPage(String url) {
+
+    public TextBoxPage openPage() {
 
         open(url);
         return this;

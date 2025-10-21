@@ -34,7 +34,7 @@ public class TextBoxWithTestDataTests extends TestBase{
         String  url = "/automation-practice-form",
                 fullName = "Alex",
                 lastName = "Ivanov";
-        textBoxPage.openPage("/automation-practice-form")
+        textBoxPage.openPage()
             .setFullName("Alex", "Ivanov")
             .setEmail("alex@egorov.com")
             .setGender("Male")
@@ -61,7 +61,7 @@ public class TextBoxWithTestDataTests extends TestBase{
     @Test
     void fillRequiredFields() {
 
-        textBoxPage.openPage("/automation-practice-form")
+        textBoxPage.openPage()
                 .setFullName("Alex", "Ivanov")
                 .setGender("Male")
                 .setPhone("9993334455")
@@ -75,7 +75,7 @@ public class TextBoxWithTestDataTests extends TestBase{
     @Test
     void fillNonRequiredFields() {
 
-        textBoxPage.openPage("/automation-practice-form")
+        textBoxPage.openPage()
                 .setEmail("alex@egorov.com")
                 .setDate("2025", "May", "07")
                 .setSubject("Maths")

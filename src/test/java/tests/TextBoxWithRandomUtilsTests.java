@@ -37,8 +37,7 @@ public class TextBoxWithRandomUtilsTests extends TestBase{
         String email = getRandomEmail(); // Barton
         String address = getRandomString(10);
 
-        textBoxPage.openPage("/automation-practice-form")
-            .setFullName(firstName, lastName)
+        textBoxPage.openPage()
             .setEmail(email)
             .setGender("Male")
             .setPhone("9993334455")
@@ -65,7 +64,7 @@ public class TextBoxWithRandomUtilsTests extends TestBase{
     @Test
     void fillRequiredFields() {
 
-        textBoxPage.openPage("/automation-practice-form")
+        textBoxPage.openPage()
                 .setFullName("Alex", "Ivanov")
                 .setGender("Male")
                 .setPhone("9993334455")
@@ -80,7 +79,7 @@ public class TextBoxWithRandomUtilsTests extends TestBase{
     @Test
     void fillNonRequiredFields() {
 
-        textBoxPage.openPage("/automation-practice-form")
+        textBoxPage.openPage()
                 .setEmail("alex@egorov.com")
                 .setDate("2025", "May", "07")
                 .setSubject("Maths")
